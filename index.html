@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>The Living Epistolary | A Letter of Gratitude</title>
+    
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Gloria+Hallelujah&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Nunito:ital,wght@0,300;0,400;0,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9d394f",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#bc5167",
+                        "primary-fixed": "#ffd9dd",
+                        "secondary": "#994533",
+                        "secondary-fixed": "#ffdad3",
+                        "secondary-container": "#fd947d",
+                        "tertiary": "#426447",
+                        "tertiary-fixed": "#c6ecc8",
+                        "tertiary-container": "#5a7d5f",
+                        "error": "#ba1a1a",
+                        "background": "#fef9f1",
+                        "on-background": "#1d1c17",
+                        "surface": "#fef9f1",
+                        "on-surface": "#1d1c17",
+                        "on-surface-variant": "#554244",
+                    },
+                    fontFamily: {
+                        "headline": ["Indie Flower", "cursive"],
+                        "body": ["Nunito", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"],
+                        "handwritten": ["Gloria Hallelujah", "cursive"]
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
+                        'aurora-mesh': 'aurora-mesh 20s ease infinite',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-soft': {
+                            '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.1)' },
+                        },
+                        'aurora-mesh': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+        }
+        
+        .aurora-bg {
+            background: linear-gradient(120deg, #fffdf9 0%, #fff8e1 40%, #fce4ec 70%, #fffdf9 100%);
+            background-size: 400% 400%;
+        }
+
+        .grainy-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            opacity: 0.25;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .blur-blob {
+            filter: blur(80px);
+            z-index: -1;
+            mix-blend-mode: multiply;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            animation: floatUp 3s ease-in forwards;
+            font-size: 2rem;
+            color: #9d394f;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5) rotate(45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="aurora-bg animate-aurora-mesh text-on-surface font-body selection:bg-primary-fixed min-h-screen">
+    <div class="grainy-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/40 dark:bg-stone-900/40 backdrop-blur-xl border-b border-white/40 transition-all duration-300 hover:bg-white/60">
+        <div class="flex justify-between items-center w-full px-8 py-4 max-w-6xl mx-auto">
+            <div class="text-2xl font-medium text-primary font-headline">
+                The Living Epistolary
+            </div>
+            <div class="hidden md:flex gap-8 items-center font-headline text-lg tracking-tight">
+                <a class="text-primary border-b-2 border-primary/40 pb-1 hover:text-primary-container transition-colors duration-300" href="#letters">Letters</a>
+                <a class="text-on-surface-variant/80 hover:text-primary transition-colors duration-300" href="#quietude">Quietude</a>
+                <a class="text-on-surface-variant/80 hover:text-primary transition-colors duration-300" href="#archives">Archives</a>
+            </div>
+            <div class="flex items-center gap-4 text-primary animate-pulse-soft">
+                <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-20">
+        <!-- Background Ornaments -->
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-pink-200/50 blur-blob rounded-full"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[28rem] h-[28rem] bg-amber-100/50 blur-blob rounded-full"></div>
+        
+        <div class="absolute top-32 right-12 md:right-32 animate-float opacity-40 text-amber-400">
+            <span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <div class="absolute bottom-32 left-8 md:left-32 animate-float opacity-30 text-rose-400" style="animation-delay: 2s;">
+            <span class="material-symbols-outlined text-6xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+        </div>
+        
+        <div class="max-w-4xl space-y-8 relative z-10 animate-fade-in-up">
+            <span class="font-label text-sm md:text-base tracking-[0.4em] text-on-surface-variant/70 uppercase">this is long overdue</span>
+            <h1 class="font-headline text-6xl md:text-8xl lg:text-9xl text-on-surface leading-tight tracking-tight drop-shadow-sm">
+                To the ones who stayed.
+            </h1>
+            <p class="text-xl md:text-3xl text-on-surface-variant max-w-2xl mx-auto font-light leading-relaxed">
+                You didn't have to. But you did.<br/>Every single time.
+            </p>
+            <div class="pt-16">
+                <a href="#letters" class="inline-block animate-float" style="animation-delay: 1s;">
+                    <span class="material-symbols-outlined text-primary text-5xl hover:text-primary-container transition-colors cursor-pointer" style="font-variation-settings: 'FILL' 1;">expand_more</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Divider Line -->
+    <div class="max-w-4xl mx-auto px-6 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+    
+    <!-- Section 1: The Darkness -->
+    <section class="py-32 relative overflow-hidden fade-in-section" id="letters">
+        <div class="absolute top-1/2 left-0 w-80 h-80 bg-pink-100/40 blur-blob rounded-full"></div>
+        <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+            <h2 class="font-headline text-4xl md:text-5xl lg:text-6xl text-primary mb-10 leading-snug">When I had nothing left,<br/>you showed up.</h2>
+            <div class="space-y-8 text-lg md:text-2xl text-on-surface-variant leading-relaxed font-light">
+                <p>There were nights when the air felt heavy and the room felt far too large. I expected to find myself alone in that silence, as most would have found reason to leave. Instead, you were there, sitting quietly in the corner of my mess, refusing to let the shadows be the only company I kept.</p>
+                <p>You didn't try to fix the unfixable. You simply stayed, anchoring me when I was drifting toward shores I didn't recognize. That quiet presence meant more than a thousand grand gestures ever could.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 2: Cards -->
+    <section class="py-32 relative fade-in-section">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="mb-20 text-center max-w-3xl mx-auto">
+                <h2 class="font-headline text-4xl md:text-5xl text-secondary mb-6">You gave me things I didn't know I needed.</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 md:gap-12 relative group/container">
+                <!-- Card 1 -->
+                <div class="group p-10 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 flex flex-col items-center text-center space-y-6 transition-all duration-500 hover:-translate-y-4 hover:bg-white/70 hover:shadow-2xl hover:shadow-secondary/20 hover:border-white relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-20 h-20 rounded-2xl bg-secondary-fixed/50 flex items-center justify-center text-secondary group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-sm relative z-10">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">visibility</span>
+                    </div>
+                    <h3 class="font-headline text-3xl md:text-4xl text-on-surface relative z-10">You believed in me</h3>
+                    <p class="text-on-surface-variant leading-relaxed text-lg relative z-10">Even when my own reflection felt like a stranger, you saw the parts of me worth keeping. You held onto my potential until I was strong enough to reach for it myself.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="group p-10 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 flex flex-col items-center text-center space-y-6 md:translate-y-12 transition-all duration-500 hover:translate-y-8 hover:bg-white/70 hover:shadow-2xl hover:shadow-primary/20 hover:border-white relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-20 h-20 rounded-2xl bg-primary-fixed/50 flex items-center justify-center text-primary group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 shadow-sm relative z-10">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    </div>
+                    <h3 class="font-headline text-3xl md:text-4xl text-on-surface relative z-10">Space to fall apart</h3>
+                    <p class="text-on-surface-variant leading-relaxed text-lg relative z-10">You never asked me to be "on." You let me be broken, messy, and silent, without once making me feel like I was taking up too much room in your life.</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="group p-10 rounded-3xl bg-white/40 backdrop-blur-xl border border-white/60 flex flex-col items-center text-center space-y-6 transition-all duration-500 hover:-translate-y-4 hover:bg-white/70 hover:shadow-2xl hover:shadow-tertiary/20 hover:border-white relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-20 h-20 rounded-2xl bg-tertiary-fixed/50 flex items-center justify-center text-tertiary group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-sm relative z-10">
+                        <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">anchor</span>
+                    </div>
+                    <h3 class="font-headline text-3xl md:text-4xl text-on-surface relative z-10">You never gave up</h3>
+                    <p class="text-on-surface-variant leading-relaxed text-lg relative z-10">Through the repetitive cycles and the redundant apologies, you remained constant. Your loyalty wasn't a transaction; it was a sanctuary I could always return to.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 3: Memories -->
+    <section class="py-32 relative overflow-hidden min-h-screen flex flex-col justify-center fade-in-section" id="quietude">
+        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-amber-100/40 blur-blob rounded-full"></div>
+        <div class="max-w-6xl mx-auto px-6 w-full relative z-10 flex flex-col items-center">
+            <h2 class="font-headline text-5xl md:text-6xl text-[#d49a21] mb-12 text-center drop-shadow-sm">I still think about these.</h2>
+            
+            <!-- Cards wrap correctly on mobile without overlap using responsive margin tricks -->
+            <div class="relative w-full max-w-5xl flex flex-col md:block items-center md:h-[600px] gap-12 md:gap-0 mt-10">
+                <!-- Memory 1 -->
+                <div class="md:absolute md:top-0 md:left-[5%] transform md:-rotate-3 transition-all hover:rotate-0 hover:z-30 hover:scale-105 duration-500 cursor-pointer w-[85%] sm:w-[22rem]">
+                    <div class="bg-white/95 backdrop-blur-sm p-5 pb-16 shadow-2xl shadow-on-surface/10 border border-white/80 rounded-sm">
+                        <img alt="hands touching" class="w-full h-72 object-cover rounded-sm grayscale-[30%] hover:grayscale-0 transition-all duration-700" src="https://images.unsplash.com/photo-1529156069898-49953b1b68ce?auto=format&fit=crop&q=80&w=800"/>
+                        <p class="mt-6 font-headline text-xl md:text-2xl text-center text-on-surface-variant px-2 leading-tight">The time you stayed when I needed someone most</p>
+                    </div>
+                </div>
+                
+                <!-- Memory 2 -->
+                <div class="md:absolute md:top-24 md:right-[5%] transform md:rotate-3 transition-all hover:rotate-0 hover:z-30 hover:scale-105 duration-500 cursor-pointer w-[85%] sm:w-[22rem]">
+                    <div class="bg-white/95 backdrop-blur-sm p-5 pb-16 shadow-2xl shadow-on-surface/10 border border-white/80 rounded-sm">
+                        <img alt="coffee and letter" class="w-full h-72 object-cover rounded-sm grayscale-[30%] hover:grayscale-0 transition-all duration-700" src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&q=80&w=800"/>
+                        <p class="mt-6 font-headline text-xl md:text-2xl text-center text-on-surface-variant px-2 leading-tight">Every time you checked on me without being asked</p>
+                    </div>
+                </div>
+                
+                <!-- Memory 3 -->
+                <div class="md:absolute md:-bottom-12 md:left-1/2 md:-translate-x-1/2 transform md:-rotate-2 transition-all hover:rotate-0 hover:z-30 hover:scale-105 duration-500 cursor-pointer w-[85%] sm:w-[22rem] z-20">
+                    <div class="bg-white/95 backdrop-blur-sm p-5 pb-16 shadow-2xl shadow-on-surface/10 border border-white/80 rounded-sm">
+                        <img alt="walking in nature" class="w-full h-72 object-cover rounded-sm grayscale-[30%] hover:grayscale-0 transition-all duration-700" src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&q=80&w=800"/>
+                        <p class="mt-6 font-headline text-xl md:text-2xl text-center text-on-surface-variant px-2 leading-tight">The way you never made me feel like a burden</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section 4: The Letter -->
+    <section class="py-32 md:py-48 relative fade-in-section" id="archives">
+        <div class="max-w-3xl mx-auto px-6 relative z-10">
+            <div class="bg-white/80 backdrop-blur-xl p-10 md:p-20 shadow-2xl shadow-tertiary/10 rounded-2xl relative transform border border-white/80 transition-transform duration-700 hover:scale-[1.01]">
+                <div class="absolute -top-10 -right-4 md:-right-10 p-8 opacity-20 text-tertiary transform rotate-12 -z-10">
+                    <span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">mail</span>
+                </div>
+                <h2 class="font-headline text-4xl md:text-5xl text-tertiary mb-12 border-b border-tertiary/20 pb-8">If I could say it properly,<br/>it would sound like this.</h2>
+                <div class="font-handwritten text-xl md:text-3xl text-on-surface leading-[2.2] space-y-8">
+                    <p>Dearest Friend,</p>
+                    <p>I am writing this because often, in the middle of our days, I forget to tell you how much of my world is held together by your presence. You have held space for me when I couldn't even stand within it myself. You've witnessed the unpolished, uncurated versions of my life and you never once turned your eyes away.</p>
+                    <p>Thank you for the silence we shared, for the words you chose so carefully, and for the times you simply sat there, reminding me that I was not alone in the dark. You are the quiet miracle I never expected, but always needed.</p>
+                    <p class="pt-8 text-right">With all my love,</p>
+                    <p class="text-4xl md:text-5xl text-primary mt-2 text-right">Yousef</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Closing Section -->
+    <section class="py-40 text-center px-6 relative overflow-hidden fade-in-section">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-pink-200/30 blur-blob rounded-full"></div>
+        <div class="max-w-2xl mx-auto relative z-10 space-y-10">
+            <h2 class="font-headline text-5xl md:text-7xl lg:text-8xl text-primary leading-tight">Thank you for not letting go.</h2>
+            <p class="text-2xl md:text-3xl text-on-surface-variant font-light italic">You are more loved than you know.</p>
+            <div class="pt-16">
+                <button id="final-btn" class="group bg-gradient-to-r from-primary to-primary-container text-white px-12 py-5 rounded-full text-xl font-headline tracking-widest shadow-xl shadow-primary/30 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/40 active:translate-y-0 flex items-center justify-center gap-3 mx-auto">
+                    <span>With everything I have</span>
+                    <span class="material-symbols-outlined group-hover:animate-pulse-soft" style="font-variation-settings: 'FILL' 1;">favorite</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="relative z-10 bg-white/40 backdrop-blur-xl pt-16 pb-12 border-t border-white/50">
+        <div class="flex flex-col items-center gap-6 w-full px-6 text-center">
+            <div class="text-xl font-light text-primary/80 font-headline italic">
+                For the ones who stayed at 2am. You know who you are.
+            </div>
+            <div class="flex gap-8 mt-6 font-headline tracking-wider">
+                <a class="text-on-surface-variant/70 hover:text-primary transition-all duration-300" href="#letters">Our Story</a>
+                <a class="text-on-surface-variant/70 hover:text-primary transition-all duration-300" href="#archives">The Letter</a>
+                <a class="text-on-surface-variant/70 hover:text-primary transition-all duration-300" href="#quietude">Memories</a>
+            </div>
+            <p class="mt-12 text-sm font-label text-on-surface-variant/50 tracking-[0.2em] uppercase">© 2024 The Living Epistolary</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Final button effect
+            const finalBtn = document.getElementById('final-btn');
+            if (finalBtn) {
+                finalBtn.addEventListener('click', function() {
+                    // Create floating hearts
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            const heart = document.createElement('div');
+                            heart.innerHTML = '♥';
+                            heart.className = 'floating-heart';
+                            
+                            // Random positioning around the button
+                            const rect = finalBtn.getBoundingClientRect();
+                            const startX = rect.left + (Math.random() * rect.width);
+                            const startY = rect.top + (Math.random() * rect.height);
+                            
+                            heart.style.left = startX + 'px';
+                            heart.style.top = startY + 'px';
+                            
+                            // Random sizing and color variation
+                            const size = 1 + Math.random() * 2;
+                            heart.style.fontSize = size + 'rem';
+                            
+                            const colors = ['#9d394f', '#bc5167', '#fd947d', '#ffb2bd'];
+                            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                            
+                            document.body.appendChild(heart);
+                            
+                            // Clean up
+                            setTimeout(() => heart.remove(), 3000);
+                        }, i * 50);
+                    }
+                    
+                    // Scroll to top slowly after a short delay
+                    setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 1000);
+                });
+            }
+            
+            // Scroll spy for navigation links
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Adjust padding offset based on nav height
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('border-b-2', 'border-primary/40', 'text-primary');
+                    link.classList.add('text-on-surface-variant/80');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.remove('text-on-surface-variant/80');
+                        link.classList.add('border-b-2', 'border-primary/40', 'text-primary');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
